@@ -39,6 +39,7 @@ public class TasksPage extends WebPage {
 		TaskList collection = app.getTaskList();
 		List<Task> tasks = collection.getTasks();
 
+		@SuppressWarnings("unchecked")
 		PropertyListView taskListView =
 				new PropertyListView("task_list", tasks) {
 					private static final long serialVersionUID = 1L;

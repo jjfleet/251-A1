@@ -28,4 +28,9 @@ public class TaskList implements Serializable {
     public long getHighCount() {
     	return collection.stream().filter(task -> task.getPriority().equals("High")).count();
     }
+    
+    public long getLowCount() {
+    	return collection.stream().filter(task -> task.getPriority().equals("Low")).count();
+    }
+    
 }

@@ -41,8 +41,11 @@ public class TasksPage extends WebPage {
 		TaskList collection = app.getTaskList();
 		List<Task> tasks = collection.getTasks();
 		
-		Label countLabel = new Label("count", new PropertyModel(collection, "highCount"));
+		Label countLabel = new Label("hiCount", new PropertyModel(collection, "HighCount"));
 		add(countLabel);
+		
+		Label countLabelLow = new Label("loCount", new PropertyModel(collection, "LowCount"));
+		add(countLabelLow);
 
 		
 		@SuppressWarnings("unchecked")
@@ -81,6 +84,18 @@ public class TasksPage extends WebPage {
 				List<Task> forRemoval = new ArrayList<Task>();
 				for(Task t: tasks) {
 					if (!t.getPriority().equals("High"))
+						forRemoval.add(t);
+				}
+				tasks.removeAll(forRemoval);
+			}
+		});
+		
+		add(new Link<Void>("showLow") {
+			@Override
+			public void onClick() {
+				List<Task> forRemoval = new ArrayList<Task>();
+				for(Task t: tasks) {
+					if (!t.getPriority().equals("Low"))
 						forRemoval.add(t);
 				}
 				tasks.removeAll(forRemoval);

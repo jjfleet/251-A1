@@ -18,7 +18,7 @@ public class Task implements Serializable {
     public Task(String name, String priority) {
         this.name = name;
         this.description = "";
-        this.completed = false;
+        this.completed = true;
         this.priority = priority;
     }
     

@@ -10,11 +10,13 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.resource.ResourceReference;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,6 +40,9 @@ public class TasksPage extends WebPage {
 		WicketApplication app = (WicketApplication) this.getApplication();
 		TaskList collection = app.getTaskList();
 		List<Task> tasks = collection.getTasks();
+		
+		Label countLabel = new Label("count", new PropertyModel(collection, "highCount"));
+		add(countLabel);
 
 		@SuppressWarnings("unchecked")
 		PropertyListView taskListView =
@@ -68,6 +73,19 @@ public class TasksPage extends WebPage {
 
 			}
 		});
+		
+		add(new Link<Void>("showHigh") {
+			@Override
+			public void onClick() {
+				List<Task> forRemoval = new ArrayList<Task>();
+				for(Task t: tasks) {
+					if (!t.getPriority().equals("High"))
+						forRemoval.add(t);
+				}
+				tasks.removeAll(forRemoval);
+			}
+		});
+		
 
 
 		listForm.add(taskListView);

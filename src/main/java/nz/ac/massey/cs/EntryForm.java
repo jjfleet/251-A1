@@ -12,12 +12,16 @@ public class EntryForm extends Form<Void> {
 
     private RequiredTextField nameField;
     private RequiredTextField descriptionField;
+    private RequiredTextField priorityField;
 
 
     public EntryForm(String id) {
         super(id);
         nameField = new RequiredTextField("name", Model.of(""));
         descriptionField = new RequiredTextField("description", Model.of(""));
+        priorityField = new RequiredTextField("priority", Model.of(""));
+        
+        add(priorityField);
         add(nameField);
         add(descriptionField);
     }
@@ -27,15 +31,18 @@ public class EntryForm extends Form<Void> {
         super.onSubmit();
         String name = (String)nameField.getDefaultModelObject();
         String description = (String)descriptionField.getDefaultModelObject();
+        String priority = (String)priorityField.getDefaultModelObject();
 
         descriptionField.clearInput();
         descriptionField.setModelObject(null);
         nameField.clearInput();
         nameField.setModelObject(null);
-
+        priorityField.clearInput();
+        priorityField.setModelObject(null);
+        
         WicketApplication app = (WicketApplication) this.getApplication();
         TaskList collection = app.getTaskList();
-        collection.addTask(new Task(name));
+        collection.addTask(new Task(name, priority));
 
     }
 }

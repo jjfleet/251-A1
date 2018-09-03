@@ -13,14 +13,22 @@ public class Task implements Serializable {
     private Integer id;
     private Date date;
 
+    private String priority;
 
-    public Task(String name) {
+    public Task(String name, String priority) {
         this.name = name;
         this.description = "";
         this.completed = false;
+        this.priority = priority;
     }
+    
     public boolean isComplete() {
         return completed;
     }
+    
+    public String getPriority() {
+    	return priority;
+    }
+    
     public void setComplete(boolean complete) { completed = complete; }
 }

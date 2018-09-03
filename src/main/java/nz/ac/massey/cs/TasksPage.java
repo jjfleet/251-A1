@@ -48,6 +48,7 @@ public class TasksPage extends WebPage {
 
 						item.add(new Label("name"));
 						item.add(new Label("description"));
+						item.add(new Label("priority"));
 
 						item.add(new AjaxCheckBox("completed") {
 							@Override

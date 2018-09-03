@@ -24,5 +24,9 @@ public class TaskList implements Serializable {
     public void removeTask(Task task) {
         collection.remove(task);
     }
+    
+    public long getHighCount() {
+    	return collection.stream().filter(task -> task.getPriority().equals("High")).count();
+    }
 
 }

@@ -1,4 +1,4 @@
-# ** TEST EDIT mon 3 sep JJ **
+# ** DUE WEDNESDAY 12th SEPTEMBER 11PM **
 # 159251 Assignment 1
 ## Task 1: Shell scripting
 Markdown format todo list files are in the `./data/files` directory

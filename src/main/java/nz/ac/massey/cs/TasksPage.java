@@ -44,6 +44,7 @@ public class TasksPage extends WebPage {
 		Label countLabel = new Label("count", new PropertyModel(collection, "highCount"));
 		add(countLabel);
 
+		
 		@SuppressWarnings("unchecked")
 		PropertyListView taskListView =
 				new PropertyListView("task_list", tasks) {
@@ -85,7 +86,6 @@ public class TasksPage extends WebPage {
 				tasks.removeAll(forRemoval);
 			}
 		});
-		
 
 
 		listForm.add(taskListView);

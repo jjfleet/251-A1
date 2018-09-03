@@ -78,6 +78,18 @@ public class TasksPage extends WebPage {
 			}
 		});
 		
+		add(new Link<Void>("isComplete") {
+			@Override
+			public void onClick() {
+				List<Task> forRemoval = new ArrayList<Task>();
+				for(Task t: tasks) {
+					if (t.isComplete())
+						forRemoval.add(t);
+				}
+				tasks.removeAll(forRemoval);
+			}
+		});
+		
 		add(new Link<Void>("showHigh") {
 			@Override
 			public void onClick() {

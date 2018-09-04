@@ -41,7 +41,8 @@ public class TasksPage extends WebPage {
 		WicketApplication app = (WicketApplication) this.getApplication();
 		TaskList collection = app.getTaskList();
 		List<Task> tasks = collection.getTasks();
-		List<Task> tempList = new ArrayList<Task>();
+		List<Task> temp = new LinkedList<Task>();
+
 		
 		Label countLabel = new Label("hiCount", new PropertyModel(collection, "HighCount"));
 		add(countLabel);
@@ -69,6 +70,7 @@ public class TasksPage extends WebPage {
 						});
 					}
 				};
+		
 
 		add(new Link<Void>("selectAll") {
 			@Override
@@ -80,79 +82,46 @@ public class TasksPage extends WebPage {
 			}
 		});
 		
+		add(new Link<Void>("clearCompleted") {
+			@Override
+			public void onClick() {
+				for(Task t: tasks) {
+					if (t.isComplete())
+						temp.add(t);
+				}
+				tasks.removeAll(temp);
+			}
+		});
+		
+		add(new Link<Void>("isActive") {
+			@Override
+			public void onClick() {
+				for(Task t: temp) {
+					tasks.add(t);
+				}
+				temp.removeAll(temp);
+				for(Task t: tasks) {
+					if (t.isComplete())
+						temp.add(t);
+				}
+				tasks.removeAll(temp);
+			}
+		});
+		
 		add(new Link<Void>("isComplete") {
 			@Override
 			public void onClick() {
-				List<Task> forRemoval = new ArrayList<Task>();
-				for(Task t: tasks) {
-					if (t.isComplete())
-						forRemoval.add(t);
+				for(Task t: temp) {
+					tasks.add(t);
 				}
-				tasks.removeAll(forRemoval);
+				temp.removeAll(temp);
+				for(Task t: tasks) {
+					if (!t.isComplete())
+						temp.add(t);
+				}
+				tasks.removeAll(temp);
 			}
 		});
-		
-		
-//		add(new Link<Void>("showHigh") {
-//			@Override
-//			public void onClick() {
-//				tasks.addAll(tempList);
-////					tasks.addAll(tempList);
-//				for(Task t: tasks) {
-//					if (!t.getPriority().equals("High"))
-//						for(Task y: tasks) {
-//							tempList.add(y);
-//							tasks.removeAll(tempList);
-//					}
-////				tasks.removeAll(tempList);
-//				}
-//			}
-//		});
-//		
-//		add(new Link<Void>("showLow") {
-//			@Override
-//			public void onClick() {
-//				tasks.addAll(tempList);
-////					tasks.addAll(tempList);
-//				for(Task t: tasks) {
-//					if (!t.getPriority().equals("Low"))
-//						for(Task y: tasks) {
-//							tempList.add(y);
-//							tasks.removeAll(tempList);
-//					}
-////				tasks.removeAll(tempList);
-//				}
-//			}
-//		});
-		
-		add(new Link<Void>("showHigh") {
-		@Override
-		public void onClick() {
-			tasks.addAll(tempList);
-			tempList.removeAll(tempList);
-			for(Task t: tasks) {
-//				tasks.addAll(tempList);
-				if (!t.getPriority().equals("High"))
-					tempList.add(t);
-			}
-			tasks.remove(tempList);
-		}
-	});
-		
-		add(new Link<Void>("showLow") {
-			@Override
-			public void onClick() {
-				tasks.addAll(tempList);
-				tempList.removeAll(tempList);
-				for(Task t: tasks) {
-//					tasks.addAll(tempList);
-					if (!t.getPriority().equals("Low"))
-						tempList.add(t);
-				}
-				tasks.remove(tempList);
-			}
-		});
-
 
 		listForm.add(taskListView);
 

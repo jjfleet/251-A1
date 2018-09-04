@@ -42,6 +42,7 @@ public class TasksPage extends WebPage {
 		TaskList collection = app.getTaskList();
 		List<Task> tasks = collection.getTasks();
 		List<Task> temp = new LinkedList<Task>();
+		List<Task> deleted = new LinkedList<Task>();
 
 		
 		Label countLabel = new Label("hiCount", new PropertyModel(collection, "HighCount"));
@@ -85,11 +86,16 @@ public class TasksPage extends WebPage {
 		add(new Link<Void>("clearCompleted") {
 			@Override
 			public void onClick() {
+				for(Task t: temp) {
+					if (t.isComplete())
+						deleted.add(t);
+				}
 				for(Task t: tasks) {
 					if (t.isComplete())
-						temp.add(t);
+						deleted.add(t);
 				}
-				tasks.removeAll(temp);
+				tasks.removeAll(deleted);
+				temp.removeAll(deleted);
 			}
 		});
 		

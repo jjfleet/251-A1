@@ -23,7 +23,7 @@
 		<input wicket:id="project" type="text" style="width: 15em"/>
 		</div>
 	
-		<div> <label>Task Name </label>
+		<div> <label>Task </label>
 		<input wicket:id="name" type="text" style="width: 15em"/>
 		</div>
 		
@@ -49,11 +49,11 @@
 	<table>
 		<tr wicket:id="task_list">
 			<td>
-				<input class="toggle" type="checkbox" wicket:id="completed" />
-				<span wicket:id="project">Project Title</span>
-				<span wicket:id="name">Name</span>
-				<span wicket:id="dueDate">Due Date</span>
-				<span wicket:id="priority">Priority</span>
+				<input class="toggle" type="checkbox" wicket:id="completed" /> <br>
+				Project: <span wicket:id="project">Project Title</span> <br>
+				Task: <span wicket:id="name">Name</span> <br> 
+				Due Date: <span wicket:id="dueDate">Due Date</span> <br> 
+				Priority: <span wicket:id="priority">Priority</span> 
 
 			</td>
 		</tr>

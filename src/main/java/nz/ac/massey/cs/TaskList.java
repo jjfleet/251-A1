@@ -33,4 +33,8 @@ public class TaskList implements Serializable {
     	return collection.stream().filter(task -> task.getPriority().equals("Low")).count();
     }
     
+    public long getActiveCount() {
+    	return collection.stream().filter(task -> !task.isComplete()).count();
+    }
+    
 }

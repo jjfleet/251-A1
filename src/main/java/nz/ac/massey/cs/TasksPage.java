@@ -50,6 +50,9 @@ public class TasksPage extends WebPage {
 		
 		Label countLabelLow = new Label("loCount", new PropertyModel(collection, "LowCount"));
 		add(countLabelLow);
+		
+		Label countLabelActive = new Label("activeCount", new PropertyModel(collection, "ActiveCount"));
+		add(countLabelActive);
 
 		
 		@SuppressWarnings("unchecked")

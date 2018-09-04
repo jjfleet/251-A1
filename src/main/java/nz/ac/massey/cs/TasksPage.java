@@ -18,6 +18,7 @@ import org.apache.wicket.request.resource.ResourceReference;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TasksPage extends WebPage {
@@ -40,6 +41,8 @@ public class TasksPage extends WebPage {
 		WicketApplication app = (WicketApplication) this.getApplication();
 		TaskList collection = app.getTaskList();
 		List<Task> tasks = collection.getTasks();
+		List<Task> temp = new LinkedList<Task>();
+
 		
 		Label countLabel = new Label("hiCount", new PropertyModel(collection, "HighCount"));
 		add(countLabel);
@@ -67,6 +70,7 @@ public class TasksPage extends WebPage {
 						});
 					}
 				};
+		
 
 		add(new Link<Void>("selectAll") {
 			@Override
@@ -78,15 +82,44 @@ public class TasksPage extends WebPage {
 			}
 		});
 		
+		add(new Link<Void>("clearCompleted") {
+			@Override
+			public void onClick() {
+				for(Task t: tasks) {
+					if (t.isComplete())
+						temp.add(t);
+				}
+				tasks.removeAll(temp);
+			}
+		});
+		
+		add(new Link<Void>("isActive") {
+			@Override
+			public void onClick() {
+				for(Task t: temp) {
+					tasks.add(t);
+				}
+				temp.removeAll(temp);
+				for(Task t: tasks) {
+					if (t.isComplete())
+						temp.add(t);
+				}
+				tasks.removeAll(temp);
+			}
+		});
+		
 		add(new Link<Void>("isComplete") {
 			@Override
 			public void onClick() {
-				List<Task> forRemoval = new ArrayList<Task>();
-				for(Task t: tasks) {
-					if (t.isComplete())
-						forRemoval.add(t);
+				for(Task t: temp) {
+					tasks.add(t);
 				}
-				tasks.removeAll(forRemoval);
+				temp.removeAll(temp);
+				for(Task t: tasks) {
+					if (!t.isComplete())
+						temp.add(t);
+				}
+				tasks.removeAll(temp);
 			}
 		});
 		

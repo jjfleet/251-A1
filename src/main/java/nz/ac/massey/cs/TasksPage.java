@@ -128,6 +128,16 @@ public class TasksPage extends WebPage {
 				tasks.removeAll(temp);
 			}
 		});
+		
+		add(new Link<Void>("allTasks") {
+			@Override
+			public void onClick() {
+				for(Task t: temp) {
+					tasks.add(t);
+				}
+				temp.removeAll(temp);
+			}
+		});
 
 		listForm.add(taskListView);
 

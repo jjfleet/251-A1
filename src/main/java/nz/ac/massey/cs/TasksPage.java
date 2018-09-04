@@ -41,8 +41,8 @@ public class TasksPage extends WebPage {
 		WicketApplication app = (WicketApplication) this.getApplication();
 		TaskList collection = app.getTaskList();
 		List<Task> tasks = collection.getTasks();
-		List<Task> temp = new LinkedList<Task>();
-		List<Task> deleted = new LinkedList<Task>();
+		List<Task> temp = new LinkedList<Task>();		//temp list for holding data that isn't being viewed.
+		List<Task> deleted = new LinkedList<Task>();	//temp list for holding data to be deleted
 
 		
 		Label countLabel = new Label("hiCount", new PropertyModel(collection, "HighCount"));
@@ -77,69 +77,69 @@ public class TasksPage extends WebPage {
 				};
 		
 
-		add(new Link<Void>("selectAll") {
+		add(new Link<Void>("selectAll") {	//selects all tasks list
 			@Override
 			public void onClick() {
-				for(Task t: tasks) {
-					t.setComplete(true);
+				for(Task t: tasks) {		//for tasks in tasks list
+					t.setComplete(true);	//set tasks to complete (true)
 				}
 
 			}
 		});
 		
-		add(new Link<Void>("clearCompleted") {
+		add(new Link<Void>("clearCompleted") {	//this code block clears all completed (checked) tasks
 			@Override
 			public void onClick() {
-				for(Task t: temp) {
-					if (t.isComplete())
-						deleted.add(t);
+				for(Task t: temp) {			//for tasks in temp list
+					if (t.isComplete())		//if task is set to complete
+						deleted.add(t);		//add task to 'deleted' list
 				}
-				for(Task t: tasks) {
-					if (t.isComplete())
-						deleted.add(t);
+				for(Task t: tasks) {		//for tasks in tasks list
+					if (t.isComplete())		//if task is set to complete
+						deleted.add(t);		//add task to 'deleted' list
 				}
-				tasks.removeAll(deleted);
-				temp.removeAll(deleted);
+				tasks.removeAll(deleted);	//remove all tasks in deleted list from tasks list
+				temp.removeAll(deleted);	//remove all tasks in deleted list from temp list
 			}
 		});
 		
-		add(new Link<Void>("isActive") {
+		add(new Link<Void>("isActive") {	//code block to show all active/unchecked tasks
 			@Override
 			public void onClick() {
-				for(Task t: temp) {
-					tasks.add(t);
+				for(Task t: temp) {		//for tasks in temp list
+					tasks.add(t);		//add task to 'tasks' list
 				}
-				temp.removeAll(temp);
-				for(Task t: tasks) {
-					if (t.isComplete())
-						temp.add(t);
+				temp.removeAll(temp);	//empties the temp list
+				for(Task t: tasks) {	//for tasks in task
+					if (t.isComplete())	//if task is set to complete
+						temp.add(t);	//add task to temp list
 				}
-				tasks.removeAll(temp);
+				tasks.removeAll(temp);	//remove temp list items from tasks list
 			}
 		});
 		
-		add(new Link<Void>("isComplete") {
+		add(new Link<Void>("isComplete") { //code block to show completed
 			@Override
 			public void onClick() {
-				for(Task t: temp) {
-					tasks.add(t);
+				for(Task t: temp) {		//for temp in task
+					tasks.add(t);		//add tasks to tasks
 				}
-				temp.removeAll(temp);
-				for(Task t: tasks) {
-					if (!t.isComplete())
-						temp.add(t);
+				temp.removeAll(temp);	//empties the temp list
+				for(Task t: tasks) {	//for tasks in task
+					if (!t.isComplete())//if the task is NOT complete
+						temp.add(t);	//add task to temp list
 				}
-				tasks.removeAll(temp);
+				tasks.removeAll(temp);	//remove all temp items from tasks list
 			}
 		});
 		
-		add(new Link<Void>("allTasks") {
+		add(new Link<Void>("allTasks") {	//code block displays all tasks, regardless of active/completed
 			@Override
 			public void onClick() {
-				for(Task t: temp) {
-					tasks.add(t);
+				for(Task t: temp) {		//for temp in task
+					tasks.add(t);		// add tasks to tasks
 				}
-				temp.removeAll(temp);
+				temp.removeAll(temp);	//clear out temp list
 			}
 		});
 

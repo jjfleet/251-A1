@@ -92,7 +92,7 @@ public class TasksPage extends WebPage {
 				}
 				for(Task t: tasks) {
 					if (t.isComplete())
-							deleted.add(t);
+						deleted.add(t);
 				}
 				tasks.removeAll(deleted);
 				temp.removeAll(deleted);

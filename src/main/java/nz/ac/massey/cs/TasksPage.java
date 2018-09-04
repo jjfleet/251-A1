@@ -18,6 +18,7 @@ import org.apache.wicket.request.resource.ResourceReference;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TasksPage extends WebPage {
@@ -40,6 +41,7 @@ public class TasksPage extends WebPage {
 		WicketApplication app = (WicketApplication) this.getApplication();
 		TaskList collection = app.getTaskList();
 		List<Task> tasks = collection.getTasks();
+		List<Task> tempList = new ArrayList<Task>();
 		
 		Label countLabel = new Label("hiCount", new PropertyModel(collection, "HighCount"));
 		add(countLabel);
@@ -90,27 +92,64 @@ public class TasksPage extends WebPage {
 			}
 		});
 		
+		
+//		add(new Link<Void>("showHigh") {
+//			@Override
+//			public void onClick() {
+//				tasks.addAll(tempList);
+////					tasks.addAll(tempList);
+//				for(Task t: tasks) {
+//					if (!t.getPriority().equals("High"))
+//						for(Task y: tasks) {
+//							tempList.add(y);
+//							tasks.removeAll(tempList);
+//					}
+////				tasks.removeAll(tempList);
+//				}
+//			}
+//		});
+//		
+//		add(new Link<Void>("showLow") {
+//			@Override
+//			public void onClick() {
+//				tasks.addAll(tempList);
+////					tasks.addAll(tempList);
+//				for(Task t: tasks) {
+//					if (!t.getPriority().equals("Low"))
+//						for(Task y: tasks) {
+//							tempList.add(y);
+//							tasks.removeAll(tempList);
+//					}
+////				tasks.removeAll(tempList);
+//				}
+//			}
+//		});
+		
 		add(new Link<Void>("showHigh") {
-			@Override
-			public void onClick() {
-				List<Task> forRemoval = new ArrayList<Task>();
-				for(Task t: tasks) {
-					if (!t.getPriority().equals("High"))
-						forRemoval.add(t);
-				}
-				tasks.removeAll(forRemoval);
+		@Override
+		public void onClick() {
+			tasks.addAll(tempList);
+			tempList.removeAll(tempList);
+			for(Task t: tasks) {
+//				tasks.addAll(tempList);
+				if (!t.getPriority().equals("High"))
+					tempList.add(t);
 			}
-		});
+			tasks.remove(tempList);
+		}
+	});
 		
 		add(new Link<Void>("showLow") {
 			@Override
 			public void onClick() {
-				List<Task> forRemoval = new ArrayList<Task>();
+				tasks.addAll(tempList);
+				tempList.removeAll(tempList);
 				for(Task t: tasks) {
+//					tasks.addAll(tempList);
 					if (!t.getPriority().equals("Low"))
-						forRemoval.add(t);
+						tempList.add(t);
 				}
-				tasks.removeAll(forRemoval);
+				tasks.remove(tempList);
 			}
 		});
 

@@ -19,7 +19,7 @@ public class Task implements Serializable {
         this.name = name;
         this.description = "";
         // completed originally set to 'false' - have changed it here for testing
-        this.completed = true;
+        this.completed = false;
         this.priority = priority;
     }
     

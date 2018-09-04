@@ -25,15 +25,15 @@ public class TaskList implements Serializable {
         collection.remove(task);
     }
     
-    public long getHighCount() {	//Counts number of high priority tasks
+    public long getHighCount() {
     	return collection.stream().filter(task -> task.getPriority().equals("High")).count();
     }
     
-    public long getLowCount() {		//counts number of low priority tasks
+    public long getLowCount() {
     	return collection.stream().filter(task -> task.getPriority().equals("Low")).count();
     }
     
-    public long getActiveCount() {	//counts number of active tasks
+    public long getActiveCount() {
     	return collection.stream().filter(task -> !task.isComplete()).count();
     }
     

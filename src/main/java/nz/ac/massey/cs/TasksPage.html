@@ -18,16 +18,27 @@
 
 
 	<form wicket:id="entryForm">
-		<div><label>Name </label><input
-				wicket:id="name"
-				type="text" style="width: 15em" /></div>
-		<div><label>Description </label><input
-				wicket:id="description" type="text" style="width: 30em"
-		/></div>
-		<div><label>Priority </label><input
-				wicket:id="priority" type="text" style="width: 15em"
-		/></div>
+	
+		<div> <label>Project Title </label>
+		<input wicket:id="project" type="text" style="width: 15em"/>
+		</div>
+	
+		<div> <label>Task Name </label>
+		<input wicket:id="name" type="text" style="width: 15em"/>
+		</div>
+		
+		<div> <label>Due Date </label>
+		<input wicket:id="dueDate" type="text" style="width: 15em"/>
+		</div>
+		
+		<div> <label>Priority </label>
+		<input wicket:id="priority" type="text" style="width: 15em"/>
+		</div>
+		
+		
+		
 		<div><input type="submit" value="Add" /></div>
+		
 	</form>
 	<hr>
 
@@ -39,8 +50,9 @@
 		<tr wicket:id="task_list">
 			<td>
 				<input class="toggle" type="checkbox" wicket:id="completed" />
+				<span wicket:id="project">Project Title</span>
 				<span wicket:id="name">Name</span>
-				<span wicket:id="description">Description</span>
+				<span wicket:id="dueDate">Due Date</span>
 				<span wicket:id="priority">Priority</span>
 
 			</td>

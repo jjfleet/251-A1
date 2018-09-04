@@ -6,8 +6,9 @@ import java.util.Date;
 // This class models a Task item
 
 public class Task implements Serializable {
-
-    private String description;
+	
+	private String project;
+    private String dueDate;
     private boolean completed;
     private String name;
     private Integer id;
@@ -15,9 +16,10 @@ public class Task implements Serializable {
 
     private String priority;
 
-    public Task(String name, String priority) {
+    public Task(String name, String priority, String dueDate, String project) {
+    	this.project = project;
         this.name = name;
-        this.description = "";
+        this.dueDate = dueDate;
         // completed originally set to 'false' - have changed it here for testing
         this.completed = false;
         this.priority = priority;

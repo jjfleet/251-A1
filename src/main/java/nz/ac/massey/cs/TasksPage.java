@@ -62,9 +62,10 @@ public class TasksPage extends WebPage {
 
 					@Override
 					protected void populateItem(ListItem item) {
-
+						
+						item.add(new Label("project"));
 						item.add(new Label("name"));
-						item.add(new Label("description"));
+						item.add(new Label("dueDate"));
 						item.add(new Label("priority"));
 
 						item.add(new AjaxCheckBox("completed") {

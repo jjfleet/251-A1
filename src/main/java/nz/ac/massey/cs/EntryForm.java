@@ -9,32 +9,38 @@ import org.apache.wicket.model.Model;
 // form with two fields for adding a task item
 
 public class EntryForm extends Form<Void> {
-
+	
+	private RequiredTextField projectField;
     private RequiredTextField nameField;
-    private RequiredTextField descriptionField;
+    private RequiredTextField dueDateField;
     private RequiredTextField priorityField;
 
 
     public EntryForm(String id) {
         super(id);
+        projectField = new RequiredTextField("project", Model.of(""));
         nameField = new RequiredTextField("name", Model.of(""));
-        descriptionField = new RequiredTextField("description", Model.of(""));
+        dueDateField = new RequiredTextField("dueDate", Model.of(""));
         priorityField = new RequiredTextField("priority", Model.of(""));
         
+        add(projectField);
         add(priorityField);
         add(nameField);
-        add(descriptionField);
+        add(dueDateField);
     }
 
     // adds the task when the form is submitted (by clicking the Add button)
     protected void onSubmit() {
         super.onSubmit();
+        String project = (String)projectField.getDefaultModelObject();
         String name = (String)nameField.getDefaultModelObject();
-        String description = (String)descriptionField.getDefaultModelObject();
+        String dueDate= (String)dueDateField.getDefaultModelObject();
         String priority = (String)priorityField.getDefaultModelObject();
 
-        descriptionField.clearInput();
-        descriptionField.setModelObject(null);
+        projectField.clearInput();
+        projectField.setModelObject(null);
+        dueDateField.clearInput();
+        dueDateField.setModelObject(null);
         nameField.clearInput();
         nameField.setModelObject(null);
         priorityField.clearInput();
@@ -42,7 +48,7 @@ public class EntryForm extends Form<Void> {
         
         WicketApplication app = (WicketApplication) this.getApplication();
         TaskList collection = app.getTaskList();
-        collection.addTask(new Task(name, priority));
+        collection.addTask(new Task(project, name, priority, dueDate));
 
     }
 }

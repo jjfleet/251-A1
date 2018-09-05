@@ -39,10 +39,10 @@ public class EntryForm extends Form<Void> {
 
         projectField.clearInput();
         projectField.setModelObject(null);
-        dueDateField.clearInput();
-        dueDateField.setModelObject(null);
         nameField.clearInput();
         nameField.setModelObject(null);
+        dueDateField.clearInput();
+        dueDateField.setModelObject(null);
         priorityField.clearInput();
         priorityField.setModelObject(null);
         

@@ -77,40 +77,40 @@ public class TasksPage extends WebPage {
 				};
 		
 
-		add(new Link<Void>("selectAll") {	//selects all tasks list
+		add(new Link<Void>("selectAll") {	// selects / completes all tasks in the task list
 			@Override
 			public void onClick() {
-				for(Task t: tasks) {		//for tasks in tasks list
-					t.setComplete(true);	//set tasks to complete (true)
+				for(Task t: tasks) {		// for tasks in tasks list
+					t.setComplete(true);	// set tasks to complete (true)
 				}
 
 			}
 		});
 		
-		add(new Link<Void>("clearCompleted") {	//this code block clears all completed (checked) tasks
+		add(new Link<Void>("clearCompleted") {	// this code block clears all completed (checked) tasks
 			@Override
 			public void onClick() {
-				for(Task t: temp) {			//for tasks in temp list
-					if (t.isComplete())		//if task is set to complete
-						deleted.add(t);		//add task to 'deleted' list
+				for(Task t: temp) {			// for t in temp list
+					if (t.isComplete())		// if task is set to complete
+						deleted.add(t);		// add task to 'deleted' list
 				}
-				for(Task t: tasks) {		//for tasks in tasks list
-					if (t.isComplete())		//if task is set to complete
-						deleted.add(t);		//add task to 'deleted' list
+				for(Task t: tasks) {		// for task in tasks list
+					if (t.isComplete())		// if task is set to complete
+						deleted.add(t);		// add task to 'deleted' list
 				}
-				tasks.removeAll(deleted);	//remove all tasks in deleted list from tasks list
-				temp.removeAll(deleted);	//remove all tasks in deleted list from temp list
+				tasks.removeAll(deleted);	// remove all tasks in deleted list from tasks list
+				temp.removeAll(deleted);	// remove all tasks in deleted list from temp list
 			}
 		});
 		
-		add(new Link<Void>("isActive") {	//code block to show all active/unchecked tasks
+		add(new Link<Void>("isActive") {	// code block to show all active/unchecked tasks
 			@Override
 			public void onClick() {
-				for(Task t: temp) {		//for tasks in temp list
-					tasks.add(t);		//add task to 'tasks' list
+				for(Task t: temp) {		// for all tasks in temp list
+					tasks.add(t);		// add task t to 'tasks' list
 				}
-				temp.removeAll(temp);	//empties the temp list
-				for(Task t: tasks) {	//for tasks in task
+				temp.removeAll(temp);	// empties the temp list
+				for(Task t: tasks) {	// for each task in tasks
 					if (t.isComplete())	//if task is set to complete
 						temp.add(t);	//add task to temp list
 				}
@@ -118,28 +118,28 @@ public class TasksPage extends WebPage {
 			}
 		});
 		
-		add(new Link<Void>("isComplete") { //code block to show completed
+		add(new Link<Void>("isComplete") { // code block to show completed
 			@Override
 			public void onClick() {
-				for(Task t: temp) {		//for temp in task
-					tasks.add(t);		//add tasks to tasks
+				for(Task t: temp) {		// for t in temp
+					tasks.add(t);		// add t to tasks
 				}
-				temp.removeAll(temp);	//empties the temp list
-				for(Task t: tasks) {	//for tasks in task
-					if (!t.isComplete())//if the task is NOT complete
-						temp.add(t);	//add task to temp list
+				temp.removeAll(temp);	// empties the temp list
+				for(Task t: tasks) {	// for t in tasks
+					if (!t.isComplete())// if the task is NOT complete
+						temp.add(t);	// add current iteration of t to temp list
 				}
-				tasks.removeAll(temp);	//remove all temp items from tasks list
+				tasks.removeAll(temp);	// remove all temp items from tasks list
 			}
 		});
 		
-		add(new Link<Void>("allTasks") {	//code block displays all tasks, regardless of active/completed
+		add(new Link<Void>("allTasks") {	// code block displays all tasks, active or completed
 			@Override
 			public void onClick() {
-				for(Task t: temp) {		//for temp in task
-					tasks.add(t);		// add tasks to tasks
+				for(Task t: temp) {		// for t in temp
+					tasks.add(t);		// add current iteration of t to temp list
 				}
-				temp.removeAll(temp);	//clear out temp list
+				temp.removeAll(temp);	// remove all items in temp list
 			}
 		});
 

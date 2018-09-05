@@ -11,7 +11,7 @@ public class ReadInFile
   // double backquote is to avoid compiler interpret words
   // like \test as \t (ie. as a escape sequence)
 	  
-  File file = new File("/../../data/files/test.md");
+  File file = new File("../251-A1-Fleet-Josh/data/files/test.md");
  
   BufferedReader br = new BufferedReader(new FileReader(file));
  

@@ -121,7 +121,7 @@ public class TasksPage extends WebPage {
 		add(new Link<Void>("isComplete") { //code block to show completed
 			@Override
 			public void onClick() {
-				for(Task t: temp) {		//for temp in task
+				for(Task t: temp) {		//for tasks in temp
 					tasks.add(t);		//add tasks to tasks
 				}
 				temp.removeAll(temp);	//empties the temp list
@@ -136,8 +136,8 @@ public class TasksPage extends WebPage {
 		add(new Link<Void>("allTasks") {	//code block displays all tasks, regardless of active/completed
 			@Override
 			public void onClick() {
-				for(Task t: temp) {		//for temp in task
-					tasks.add(t);		// add tasks to tasks
+				for(Task t: temp) {		//for tasks in temp
+					tasks.add(t);		//add tasks to tasks
 				}
 				temp.removeAll(temp);	//clear out temp list
 			}

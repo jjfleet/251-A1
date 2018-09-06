@@ -173,29 +173,6 @@ public class TasksPage extends WebPage {
 				temp.removeAll(temp);	// remove all items in temp list
 			}
 		});
-		
-		add(new Link<Void>("readFile") {
-			public void onClick() {
-				File file = new File("../251-A1-Fleet-Josh/data/files/test.md");
-				
-				BufferedReader br = null;
-				try {
-					br = new BufferedReader(new FileReader(file));
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				 
-				String st;
-				try {
-					while ((st = br.readLine()) != null)
-						  System.out.println(st);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
 
 		listForm.add(taskListView);
 

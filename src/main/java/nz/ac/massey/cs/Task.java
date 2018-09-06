@@ -16,21 +16,16 @@ public class Task implements Serializable {
 
     private String priority;
 
-    public Task(String name, String priority, String dueDate, String project) {
+    public Task(String name, String dueDate, String project) {
     	this.project = project;
         this.name = name;
         this.dueDate = dueDate;
         // completed originally set to 'false' - have changed it here for testing
         this.completed = false;
-        this.priority = priority;
     }
     
     public boolean isComplete() {
         return completed;
-    }
-    
-    public String getPriority() {
-    	return priority;
     }
     
     public void setComplete(boolean complete) { 

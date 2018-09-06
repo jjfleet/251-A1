@@ -1,5 +1,11 @@
 package nz.ac.massey.cs;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,17 +31,49 @@ public class TaskList implements Serializable {
         collection.remove(task);
     }
     
-    public long getHighCount() {
-    	return collection.stream().filter(task -> task.getPriority().equals("High")).count();
-    }
-    
-    public long getLowCount() {
-    	return collection.stream().filter(task -> task.getPriority().equals("Low")).count();
-    }
-    
     public long getActiveCount() {
     	return collection.stream().filter(task -> !task.isComplete()).count();
     }
     
+    static String path = new String("../251-A1-Fleet-Josh/persistence.ser");
     
+    private static void saveTaskList(TaskList YourObject) throws IOException {
+    	ObjectOutputStream outputStream = null;
+    	try {
+    		outputStream = new ObjectOutputStream(new FileOutputStream(path));
+    		outputStream.writeObject(YourObject);
+    	}
+    	catch(FileNotFoundException ex) {
+    		ex.printStackTrace();
+    	}
+    	catch(IOException ex) {
+    		ex.printStackTrace();
+    	}
+    	finally {
+    		try {
+    			if(outputStream != null) {
+    				outputStream.flush();
+    				outputStream.close();
+    			}
+    		}
+    		catch(IOException ex) {
+    			ex.printStackTrace();
+    		}
+    	}
+    }
+    
+    public static TaskList loadTaskList() throws IOException, ClassNotFoundException {
+    	try {
+    		FileInputStream fileIn = new FileInputStream(path);
+    		ObjectInputStream in = new ObjectInputStream(fileIn);
+    		return (TaskList) in.readObject();
+    	}
+    	catch(FileNotFoundException ex) {
+    		ex.printStackTrace();
+    	}
+    	catch(IOException ex) {
+    		ex.printStackTrace();
+    	}
+		return null;
+    }
 }

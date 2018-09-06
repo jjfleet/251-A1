@@ -17,6 +17,11 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.resource.ResourceReference;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -99,7 +104,6 @@ public class TasksPage extends WebPage {
 				String st;
 				try {
 					while ((st = br.readLine()) != null)
-//						date = st.charAt(0).toString();
 						if(st.contains("#")) {
 							projectName = st.substring(2);
 							System.out.println(projectName);

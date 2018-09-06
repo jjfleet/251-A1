@@ -13,7 +13,6 @@ public class EntryForm extends Form<Void> {
 	private RequiredTextField projectField;
     private RequiredTextField nameField;
     private RequiredTextField dueDateField;
-    private RequiredTextField priorityField;
 
 
     public EntryForm(String id) {
@@ -21,10 +20,8 @@ public class EntryForm extends Form<Void> {
         projectField = new RequiredTextField("project", Model.of(""));
         nameField = new RequiredTextField("name", Model.of(""));
         dueDateField = new RequiredTextField("dueDate", Model.of(""));
-        priorityField = new RequiredTextField("priority", Model.of(""));
         
         add(projectField);
-        add(priorityField);
         add(nameField);
         add(dueDateField);
     }
@@ -35,7 +32,6 @@ public class EntryForm extends Form<Void> {
         String project = (String)projectField.getDefaultModelObject();
         String name = (String)nameField.getDefaultModelObject();
         String dueDate= (String)dueDateField.getDefaultModelObject();
-        String priority = (String)priorityField.getDefaultModelObject();
 
         projectField.clearInput();
         projectField.setModelObject(null);
@@ -43,12 +39,10 @@ public class EntryForm extends Form<Void> {
         nameField.setModelObject(null);
         dueDateField.clearInput();
         dueDateField.setModelObject(null);
-        priorityField.clearInput();
-        priorityField.setModelObject(null);
         
         WicketApplication app = (WicketApplication) this.getApplication();
         TaskList collection = app.getTaskList();
-        collection.addTask(new Task(name, priority, dueDate, project));
+        collection.addTask(new Task(name, dueDate, project));
 
     }
 }

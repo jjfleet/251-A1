@@ -1,7 +1,7 @@
 package nz.ac.massey.cs;
 
 import org.apache.wicket.Component;
-
+import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
@@ -44,7 +44,7 @@ public class TasksPage extends WebPage {
 		Date now = new Date();
 		Label dateTimeLabel = new Label("datetime", now.toString());
 		add(dateTimeLabel);
-
+		
 		WicketApplication app = (WicketApplication) this.getApplication();
 		TaskList collection = app.getTaskList();
 		List<Task> tasks = collection.getTasks();
@@ -53,6 +53,9 @@ public class TasksPage extends WebPage {
 		
 		Label countLabelActive = new Label("activeCount", new PropertyModel(collection, "ActiveCount"));
 		add(countLabelActive);
+		
+		Label config = new Label("config", app.getConfigurationType().toString());
+		add(config);
 
 		
 		@SuppressWarnings("unchecked")

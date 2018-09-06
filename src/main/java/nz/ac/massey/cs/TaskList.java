@@ -45,11 +45,11 @@ public class TaskList implements Serializable {
     
     static String path = new String("../251-A1-Fleet-Josh/persistence.ser");
     
-    private static void saveTaskList(TaskList YourObject) throws IOException {
+    public void saveTaskList() throws IOException {
     	ObjectOutputStream outputStream = null;
     	try {
     		outputStream = new ObjectOutputStream(new FileOutputStream(path));
-    		outputStream.writeObject(YourObject);
+    		outputStream.writeObject(collection);
     	}
     	catch(FileNotFoundException ex) {
     		ex.printStackTrace();

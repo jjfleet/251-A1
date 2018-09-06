@@ -82,7 +82,30 @@ public class TasksPage extends WebPage {
 						});
 					}
 				};
+					
+		add(new Link<Void>("saveTaskList") {
+			@Override
+			public void onClick() {
+				try {
+					collection.saveTaskList();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});	
 		
+		add(new Link<Void>("loadTaskList") {
+			@Override
+			public void onClick() {
+				try {
+					collection.loadTaskList();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		
 		add(new Link<Void>("readInFile") {	
 			@Override

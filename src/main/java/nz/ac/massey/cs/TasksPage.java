@@ -114,7 +114,7 @@ public class TasksPage extends WebPage {
 
 				
 				try {
-					br = new BufferedReader(new FileReader(file));
+					br = new BufferedReader(new FileReader(file));		// buffered reader to read in todo list file
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -123,21 +123,24 @@ public class TasksPage extends WebPage {
 				String st;
 				try {
 					while ((st = br.readLine()) != null) {
-						Boolean complete = false;
-						if(st.contains("#")) {
-							projectName = st.substring(2);
+						Boolean complete = false;					// sets boolean complete to false
+						if(st.contains("#")) {						// enter code her if st contains '#'
+							projectName = st.substring(2);			// sets project name to sliced string
 						}
-						else if(st.contains("due")) {
-							Integer thing = st.indexOf("due");
-							date = st.substring(thing + 4);
-							Integer item = st.indexOf("]");
-							taskName = st.substring(item + 1, thing);
-							if (st.charAt(item - 1) == 'X') {
-								complete = true;
+						else if(st.contains("due")) {					// enter here if st contains 'due'	
+							Integer dateIndex = st.indexOf("due");		// sets dateIndex to index of 'due'
+							date = st.substring(dateIndex + 4);			// set date to sliced string
+							Integer item = st.indexOf("]");				// set item to the index of the char ']'
+							if (st.charAt(4) == '(') {					// checks if there is (A) before the task
+								item = item + 4;						// adds to item to eventually exclude the (A) from the task name
 							}
-							Task t = new Task(taskName,date,projectName);
-							t.setComplete(complete);
-							collection.addTask(t);
+							taskName = st.substring(item + 1, dateIndex);
+							if (st.charAt(item - 1) == 'X') {				// if task is completed
+								complete = true;							// set boolean to true
+							}
+							Task t = new Task(taskName,date,projectName);	// create a task with extracted todo list attributes from file
+							t.setComplete(complete);						// set is complete to boolean complete
+							collection.addTask(t);							// add t to collection
 						}
 						
 					}

@@ -1,6 +1,7 @@
 package nz.ac.massey.cs;
 
 import org.apache.wicket.Component;
+
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.io.*;
 
 public class TasksPage extends WebPage {
 
@@ -81,7 +83,31 @@ public class TasksPage extends WebPage {
 					}
 				};
 		
-
+		
+		add(new Link<Void>("readInFile") {	
+			@Override
+			public void onClick() {
+				File file = new File("../251-A1-Fleet-Josh/data/files/test.md");
+				 
+				BufferedReader br = null;
+				try {
+					br = new BufferedReader(new FileReader(file));
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				 
+				String st;
+				try {
+					while ((st = br.readLine()) != null)			
+					    System.out.println(st);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		
 		add(new Link<Void>("selectAll") {	// selects / completes all tasks in the task list
 			@Override
 			public void onClick() {

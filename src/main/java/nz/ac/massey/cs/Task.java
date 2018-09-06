@@ -33,5 +33,7 @@ public class Task implements Serializable {
     	return priority;
     }
     
-    public void setComplete(boolean complete) { completed = complete; }
+    public void setComplete(boolean complete) { 
+    	completed = complete; 
+	}
 }

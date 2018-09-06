@@ -85,6 +85,10 @@ public class TasksPage extends WebPage {
 				File file = new File("../251-A1-Fleet-Josh/data/files/test.md");
 				 
 				BufferedReader br = null;
+				String projectName = "";
+				String taskName = "";
+				String date = "";
+				
 				try {
 					br = new BufferedReader(new FileReader(file));
 				} catch (FileNotFoundException e) {
@@ -94,8 +98,26 @@ public class TasksPage extends WebPage {
 				 
 				String st;
 				try {
-					while ((st = br.readLine()) != null)			
-					    System.out.println(st);
+					while ((st = br.readLine()) != null)
+//						date = st.charAt(0).toString();
+						if(st.contains("#")) {
+							projectName = st.substring(2);
+							System.out.println(projectName);
+						}
+						else if(st.contains("due")) {
+							Integer thing = st.indexOf("due");
+							date = st.substring(thing + 4);
+							System.out.println(date);
+							Integer item = st.indexOf("]");
+							taskName = st.substring(item + 1, thing);
+							System.out.println(taskName);
+							if (st.charAt(item - 1) == 'X') {
+								System.out.println(st.charAt(item - 1));
+							}
+							else {
+								System.out.println("Active Task");
+							}
+						}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -172,4 +194,6 @@ public class TasksPage extends WebPage {
 		listForm.add(taskListView);
 
 	}
+	
+	// ois = new OOS(); ois,writeObject(collection)
 }

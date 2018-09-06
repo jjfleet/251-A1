@@ -101,6 +101,8 @@ public class TasksPage extends WebPage {
 				try {
 					while ((st = br.readLine()) != null)			
 					    System.out.println(st);
+//						String[] testing = st.split(" ");
+//						System.out.println(testing);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

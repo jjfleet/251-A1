@@ -131,13 +131,13 @@ public class TasksPage extends WebPage {
 							Integer dateIndex = st.indexOf("due");		// sets dateIndex to index of 'due'
 							date = st.substring(dateIndex + 4);			// set date to sliced string
 							Integer item = st.indexOf("]");				// set item to the index of the char ']'
+							if (st.charAt(item - 1) == 'X') {			// if task is completed
+								complete = true;						// set boolean to true
+							}
 							if (st.charAt(4) == '(') {					// checks if there is (A) before the task
 								item = item + 4;						// adds to item to eventually exclude the (A) from the task name
 							}
 							taskName = st.substring(item + 1, dateIndex);
-							if (st.charAt(item - 1) == 'X') {				// if task is completed
-								complete = true;							// set boolean to true
-							}
 							Task t = new Task(taskName,date,projectName);	// create a task with extracted todo list attributes from file
 							t.setComplete(complete);						// set is complete to boolean complete
 							collection.addTask(t);							// add t to collection
@@ -211,7 +211,7 @@ public class TasksPage extends WebPage {
 			@Override
 			public void onClick() {
 				for(Task t: temp) {		// for t in temp
-					tasks.add(t);		// add current iteration of t to temp list
+					tasks.add(t);		// add current iteration of t to tasks list
 				}
 				temp.removeAll(temp);	// remove all items in temp list
 			}

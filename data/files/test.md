@@ -10,8 +10,3 @@
 [ ] (A) Import data due:2018-09-02
 # HRApp
 [ ] Verify design document due:2018-11-01
-
-
-
-
-

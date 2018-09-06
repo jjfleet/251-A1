@@ -50,13 +50,6 @@ public class TasksPage extends WebPage {
 		List<Task> tasks = collection.getTasks();
 		List<Task> temp = new LinkedList<Task>();		//temp list for holding data that isn't being viewed.
 		List<Task> deleted = new LinkedList<Task>();	//temp list for holding data to be deleted
-
-		
-		Label countLabel = new Label("hiCount", new PropertyModel(collection, "HighCount"));
-		add(countLabel);
-		
-		Label countLabelLow = new Label("loCount", new PropertyModel(collection, "LowCount"));
-		add(countLabelLow);
 		
 		Label countLabelActive = new Label("activeCount", new PropertyModel(collection, "ActiveCount"));
 		add(countLabelActive);
@@ -73,7 +66,6 @@ public class TasksPage extends WebPage {
 						item.add(new Label("project"));
 						item.add(new Label("name"));
 						item.add(new Label("dueDate"));
-						item.add(new Label("priority"));
 
 						item.add(new AjaxCheckBox("completed") {
 							@Override
@@ -116,6 +108,7 @@ public class TasksPage extends WebPage {
 				String projectName = "";
 				String taskName = "";
 				String date = "";
+
 				
 				try {
 					br = new BufferedReader(new FileReader(file));
@@ -126,25 +119,25 @@ public class TasksPage extends WebPage {
 				 
 				String st;
 				try {
-					while ((st = br.readLine()) != null)
+					while ((st = br.readLine()) != null) {
+						Boolean complete = false;
 						if(st.contains("#")) {
 							projectName = st.substring(2);
-							System.out.println(projectName);
 						}
 						else if(st.contains("due")) {
 							Integer thing = st.indexOf("due");
 							date = st.substring(thing + 4);
-							System.out.println(date);
 							Integer item = st.indexOf("]");
 							taskName = st.substring(item + 1, thing);
-							System.out.println(taskName);
 							if (st.charAt(item - 1) == 'X') {
-								System.out.println(st.charAt(item - 1));
+								complete = true;
 							}
-							else {
-								System.out.println("Active Task");
-							}
+							Task t = new Task(taskName,date,projectName);
+							t.setComplete(complete);
+							collection.addTask(t);
 						}
+						
+					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

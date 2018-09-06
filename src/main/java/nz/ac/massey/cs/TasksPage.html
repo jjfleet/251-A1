@@ -31,10 +31,6 @@
 		<input wicket:id="dueDate" type="text" style="width: 15em"/>
 		</div>
 		
-		<div> <label>Priority </label>
-		<input wicket:id="priority" type="text" style="width: 15em"/>
-		</div>
-		
 		
 		
 		<div><input type="submit" value="Add" /></div>
@@ -50,10 +46,10 @@
 		<tr wicket:id="task_list">
 			<td>
 				<input class="toggle" type="checkbox" wicket:id="completed" /> <br>
-				Due Date: <span wicket:id="project">Project Title</span> <br>
-				Project Title: <span wicket:id="name">Name</span> <br> 
-				Priority: <span wicket:id="dueDate">Due Date</span> <br> 
-				Task: <span wicket:id="priority">Priority</span> 
+				Project: <span wicket:id="project">Project Title</span> <br>
+				Name: <span wicket:id="name">Name</span> <br> 
+				Due Date: <span wicket:id="dueDate">Due Date</span> <br> 
+
 			</td>
 		</tr>
 	</table>
@@ -69,9 +65,6 @@
 	<a href="#" wicket:id="saveTaskList">Save tasks</a>
 	
 	<br><br>
-	
-	<b>Number of High Priority Tasks:</b> <span id="count" wicket:id="hiCount"></span> <br>
-	<b>Number of Low Priority Tasks:</b> <span id="count" wicket:id="loCount"></span> <br>
 	
 	<b>Number of Active/Incomplete Tasks: </b> <span id="count" wicket:id="activeCount"></span>
 

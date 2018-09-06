@@ -98,7 +98,7 @@ public class TasksPage extends WebPage {
 			@Override
 			public void onClick() {
 				try {
-					collection.loadTaskList();
+					TaskList.loadTaskList();
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {

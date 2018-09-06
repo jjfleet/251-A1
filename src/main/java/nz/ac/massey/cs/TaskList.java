@@ -43,10 +43,12 @@ public class TaskList implements Serializable {
     	return collection.stream().filter(task -> !task.isComplete()).count();
     }
     
-    private static void saveTaskList(TaskList YourObject, String filePath) throws IOException {
+    static String path = new String("../251-A1-Fleet-Josh/persistence.ser");
+    
+    private static void saveTaskList(TaskList YourObject) throws IOException {
     	ObjectOutputStream outputStream = null;
     	try {
-    		outputStream = new ObjectOutputStream(new FileOutputStream(filePath));
+    		outputStream = new ObjectOutputStream(new FileOutputStream(path));
     		outputStream.writeObject(YourObject);
     	}
     	catch(FileNotFoundException ex) {
@@ -68,9 +70,9 @@ public class TaskList implements Serializable {
     	}
     }
     
-    public static TaskList loadTaskList(String filePath) throws IOException {
+    public static TaskList loadTaskList() throws IOException, ClassNotFoundException {
     	try {
-    		FileInputStream fileIn = new FileInputStream(filePath);
+    		FileInputStream fileIn = new FileInputStream(path);
     		ObjectInputStream in = new ObjectInputStream(fileIn);
     		return (TaskList) in.readObject();
     	}
@@ -80,5 +82,6 @@ public class TaskList implements Serializable {
     	catch(IOException ex) {
     		ex.printStackTrace();
     	}
+		return null;
     }
 }

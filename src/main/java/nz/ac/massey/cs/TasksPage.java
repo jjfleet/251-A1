@@ -16,6 +16,11 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.resource.ResourceReference;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -140,6 +145,29 @@ public class TasksPage extends WebPage {
 					tasks.add(t);		// add current iteration of t to temp list
 				}
 				temp.removeAll(temp);	// remove all items in temp list
+			}
+		});
+		
+		add(new Link<Void>("readFile") {
+			public void onClick() {
+				File file = new File("../251-A1-Fleet-Josh/data/files/test.md");
+				
+				BufferedReader br = null;
+				try {
+					br = new BufferedReader(new FileReader(file));
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				 
+				String st;
+				try {
+					while ((st = br.readLine()) != null)
+						  System.out.println(st);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 

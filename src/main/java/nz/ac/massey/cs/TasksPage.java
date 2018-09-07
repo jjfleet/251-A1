@@ -93,7 +93,8 @@ public class TasksPage extends WebPage {
 			@Override
 			public void onClick() {
 				try {
-					TaskList.loadTaskList();
+					
+					collection.loadTaskList();
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -105,7 +106,7 @@ public class TasksPage extends WebPage {
 		add(new Link<Void>("readInFile") {	
 			@Override
 			public void onClick() {
-				File file = new File("../251-A1-Fleet-Josh/data/files/test.md");
+				File file = new File("../251-A1-Fleet-Josh/data/files/list.md");
 				 
 				BufferedReader br = null;
 				String projectName = "";

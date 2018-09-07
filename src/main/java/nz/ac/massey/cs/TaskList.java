@@ -62,11 +62,16 @@ public class TaskList implements Serializable {
     	}
     }
     
-    public static TaskList loadTaskList() throws IOException, ClassNotFoundException {
+    @SuppressWarnings("rawtypes")
+	public void loadTaskList() throws IOException, ClassNotFoundException {
     	try {
+    		collection.clear();
     		FileInputStream fileIn = new FileInputStream(path);
     		ObjectInputStream in = new ObjectInputStream(fileIn);
-    		return (TaskList) in.readObject();
+    		LinkedList obj =  (LinkedList) in.readObject();
+    		collection.addAll(obj);
+    		in.close();
+    		fileIn.close();
     	}
     	catch(FileNotFoundException ex) {
     		ex.printStackTrace();
@@ -74,6 +79,5 @@ public class TaskList implements Serializable {
     	catch(IOException ex) {
     		ex.printStackTrace();
     	}
-		return null;
     }
 }

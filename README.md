@@ -1,10 +1,14 @@
-# ** DUE WEDNESDAY 12th SEPTEMBER 11PM **
-# 159251 Assignment 1
-## Task 1: Shell scripting
-Markdown format todo list files are in the `./data/files` directory
-You can save the scripts you write in this directory.
+# 159.251 Software Design and Construction
+# Assignment 1
 
-## Task 2: Development
+This assignment was jointly completed by:
+Josh Fleet - 15390549
+Glen Ward - 13051097
+
+## Task 1: Shell scripting
+Markdown format todo list files are in the `./data/files` directory.
+
+## Task 2: Software Development
 ### Running the web application
 You will need to install [Apache Maven](https://maven.apache.org/) to manage the project.
 
@@ -16,4 +20,4 @@ mvn clean; mvn test
 mvn exec:java -Dexec.mainClass="nz.ac.massey.cs.Start" -Dexec.classpathScope=test
 ```
 
-If the commands execute successfully, you can visit the application on your web browser at `http://localhost:8080`
+Application can be accessed on your web browser at `http://localhost:8080`

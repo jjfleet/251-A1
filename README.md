@@ -1,8 +1,8 @@
-# 159.251 Software Design and Construction
+# 159.251 Software Engineering Design and Construction
 # Assignment 1
 
-This assignment was jointly completed by:
-Josh Fleet - 15390549
+This assignment was jointly completed by: <br/>
+Josh Fleet - 15390549 <br/>
 Glen Ward - 13051097
 
 ## Task 1: Shell scripting

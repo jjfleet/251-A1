@@ -7,15 +7,16 @@ Glen Ward - 13051097
 
 
 *Note*
-> **Task 1** Shell scripting file is named: list.sh and is located in this location: ./251-A1-Fleet-Josh/data/files/error_files . Please run script from here.
+> **Task 1** - Shell scripting file is named: list.sh and is located in this location: ./251-A1-Fleet-Josh/data/files/error_files . Please run script from here.
 
 *Note*
-> **Task 2** Certain buttons depend on files that are created when the script is run so please run the script before testing for Task 2
+> **Task 2** - Certain buttons on the webpage depend on Task 1 files that are created when the script is run so please run the script before testing for Task 2
 
 ## Task 1: Shell scripting
-Markdown format todo list files are in the `./data/files` directory.
+Markdown format todo list files are in the `./251-A1-Fleet-Josh/data/files` directory.
 
 ## Task 2: Software Development
+All .java project files are located in `./251-A1-Fleet-Josh/src/main/java/nz/ac/massey/cs`
 ### Running the web application
 You will need to install [Apache Maven](https://maven.apache.org/) to manage the project.
 

@@ -15,8 +15,12 @@ Glen Ward - 13051097
 # Git Commit ID's
 
 Josh Fleet
-> 2616323021f015f7bca1a200127dc49bf7ad5f74
+> 2616323021f015f7bca1a200127dc49bf7ad5f74 </br>
 > 042be3799393d97708d4a4adf129ae6bfc6e8dcd
+
+Glen Ward
+> 15db0e595172705a5756f7290a51d77e939d000f </br>
+> ac93c32b0bad0a5965c424541cb9d72a61c232f4
 
 ## Task 1: Shell scripting
 Markdown format todo list files are in the `./251-A1-Fleet-Josh/data/files` directory.

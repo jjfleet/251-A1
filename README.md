@@ -2,8 +2,8 @@
 # Assignment 1
 
 This assignment was jointly completed by: <br/>
-Josh Fleet - 15390549 <br/>
-Glen Ward - 13051097
+J Fleet 15390549 <br/>
+G Ward - 13051097
 
 
 *Note*
@@ -14,11 +14,11 @@ Glen Ward - 13051097
 
 # Git Commit ID's
 
-Josh Fleet
+J Fleet
 > 2616323021f015f7bca1a200127dc49bf7ad5f74 </br>
 > 042be3799393d97708d4a4adf129ae6bfc6e8dcd
 
-Glen Ward
+G Ward
 > 15db0e595172705a5756f7290a51d77e939d000f </br>
 > ac93c32b0bad0a5965c424541cb9d72a61c232f4
 
